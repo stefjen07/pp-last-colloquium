@@ -1,17 +1,22 @@
 package com.stefjen07.calculator;
 
-public class CalculatorStateImpl {
+public class CalculatorStateImpl implements CalculatorState {
     private Calculator calculator;
 
     private final double result;
 
-    CalculatorState(double result) {
+    CalculatorStateImpl(double result) {
         this.result = result;
     }
 
-    public void set(double result) {
+    public void setCalculator(Calculator calculator) {
+        this.calculator = calculator;
+    }
 
-        calculator.setState()
+    public void set(double result) {
+        CalculatorState newState = new CalculatorStateImpl(result);
+        newState.setCalculator(calculator);
+        calculator.setState(newState);
     }
 
     public double get() {
